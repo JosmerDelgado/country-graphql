@@ -1,25 +1,30 @@
 import React from 'react';
 import logo from './logo.svg';
+import { ApolloProvider } from '@apollo/react-hooks';
 import './App.css';
+import client from './graphql/client';
+import CountrySelect from './components/CountrySelect';
+import CountrySelectPolicy from './components/CountrySelectPolicy';
+import CountryDetails from './components/CountryDetails';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <div>
+          <h2> Welcome to Apollo</h2>
+          <CountrySelect />
+        </div>
+        <div>
+          <h4>With Fetch Policies</h4>
+          <CountrySelectPolicy />
+        </div>
+
+        <div>
+          <CountryDetails />
+        </div>
+      </div>
+    </ApolloProvider>
   );
 }
 
